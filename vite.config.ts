@@ -23,15 +23,29 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       // Disable native modules to prevent platform-specific issues
       external: [],
+      output: {
+        manualChunks: undefined,
+      },
     },
     // Ensure compatibility with Vercel's environment
     target: 'esnext',
     minify: 'esbuild',
+    sourcemap: false,
+    chunkSizeWarningLimit: 1000,
   },
   optimizeDeps: {
     // Force esbuild to handle dependencies
     esbuildOptions: {
       target: 'esnext',
     },
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+    ],
+  },
+  define: {
+    // Ensure proper environment variable handling
+    'process.env.NODE_ENV': JSON.stringify(mode),
   },
 }));
