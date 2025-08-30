@@ -20,8 +20,22 @@ cp -r public/* dist/ 2>/dev/null || true
 # Build with esbuild directly
 echo "Building with esbuild..."
 
-# Build the main entry point
-esbuild src/main.tsx --bundle --minify --outfile=dist/assets/main.js --format=esm --target=esnext --loader:.tsx=tsx --loader:.ts=ts --loader:.jsx=jsx --loader:.js=js --loader:.css=css
+# Build the main entry point with proper React handling
+esbuild src/main.tsx \
+  --bundle \
+  --minify \
+  --outfile=dist/assets/main.js \
+  --format=esm \
+  --target=esnext \
+  --loader:.tsx=tsx \
+  --loader:.ts=ts \
+  --loader:.jsx=jsx \
+  --loader:.js=js \
+  --loader:.css=css \
+  --define:process.env.NODE_ENV='"production"' \
+  --define:global=globalThis \
+  --jsx=automatic \
+  --jsx-import-source=react
 
 # Create index.html
 cat > dist/index.html << 'EOF'
