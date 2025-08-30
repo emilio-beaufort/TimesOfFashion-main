@@ -6,8 +6,8 @@ import path from "path";
 export default defineConfig(({ mode }) => {
   const plugins = [react()];
   
-  // Only add lovable-tagger in development mode
-  if (mode === 'development') {
+  // Only add lovable-tagger in development mode and only if explicitly requested
+  if (mode === 'development' && process.env.ENABLE_LOVABLE_TAGGER === 'true') {
     try {
       const { componentTagger } = require("lovable-tagger");
       plugins.push(componentTagger());
@@ -31,10 +31,12 @@ export default defineConfig(({ mode }) => {
     build: {
       // Optimize for Vercel deployment
       rollupOptions: {
-        external: mode === 'production' ? ['lovable-tagger'] : [],
+        external: ['lovable-tagger', '@rollup/rollup-linux-x64-gnu'],
         onwarn(warning, warn) {
           // Suppress warnings about missing optional dependencies
-          if (warning.code === 'MODULE_NOT_FOUND' && warning.message.includes('@rollup/rollup-linux-x64-gnu')) {
+          if (warning.code === 'MODULE_NOT_FOUND' && 
+              (warning.message.includes('@rollup/rollup-linux-x64-gnu') || 
+               warning.message.includes('lovable-tagger'))) {
             return;
           }
           warn(warning);
@@ -42,6 +44,9 @@ export default defineConfig(({ mode }) => {
       },
       // Ensure proper chunking
       chunkSizeWarningLimit: 1000,
+    },
+    optimizeDeps: {
+      exclude: ['lovable-tagger'],
     },
   };
 });
