@@ -14,7 +14,23 @@ async function buildApp() {
     // Create dist directory
     mkdirSync('dist', { recursive: true });
     
+    // Build CSS separately first
+    console.log('Building CSS...');
+    await build({
+      entryPoints: ['src/index.css'],
+      bundle: true,
+      outfile: 'dist/styles.css',
+      format: 'esm',
+      target: 'esnext',
+      minify: true,
+      sourcemap: false,
+      loader: {
+        '.css': 'css',
+      },
+    });
+    
     // Build the main application - only essential files
+    console.log('Building JavaScript...');
     await build({
       entryPoints: ['src/main.tsx'],
       bundle: true,
@@ -77,13 +93,14 @@ async function buildApp() {
       console.log('No public files to copy or copy failed, continuing...');
     }
     
-    // Create minimal index.html
+    // Create minimal index.html with CSS link
     const indexHtml = `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Times of Fashion</title>
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <div id="root"></div>
