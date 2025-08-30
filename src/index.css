@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Times of Fashion - Sophisticated Fashion Magazine Design System
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Base Colors - Pure fashion magazine aesthetic */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
+
+    /* Fashion Magazine Primary - Deep Black */
+    --primary: 0 0% 5%;
+    --primary-foreground: 0 0% 98%;
+
+    /* Elegant Secondary - Soft Blush */
+    --secondary: 340 25% 95%;
+    --secondary-foreground: 0 0% 5%;
+
+    /* Muted Tones */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+
+    /* Luxury Rose Gold Accent */
+    --accent: 340 60% 65%;
+    --accent-foreground: 0 0% 5%;
+
+    /* Pastel Highlights */
+    --pastel-blush: 340 40% 92%;
+    --pastel-lavender: 270 30% 92%;
+    --pastel-mint: 150 25% 92%;
+
+    /* Rose Gold Variations */
+    --rose-gold: 340 60% 65%;
+    --rose-gold-light: 340 50% 75%;
+    --rose-gold-dark: 340 70% 55%;
+
+    /* Magazine Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(340 40% 92%), hsl(270 30% 92%));
+    --gradient-rose-gold: linear-gradient(135deg, hsl(340 70% 55%), hsl(340 50% 75%));
+    --gradient-elegant: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 98%));
+    
+    /* New Luxury Gradient Colors */
+    --gradient-deep-luxury-red: linear-gradient(135deg, #8B0000, #B22222);
+    --gradient-crimson-glow: linear-gradient(135deg, #C1272D, #FF4D4D);
+    --gradient-red-gold-accent: linear-gradient(135deg, #B22222, #FFD700);
+    --gradient-velvet-depth: linear-gradient(135deg, #8B0000, #000000);
+
+    /* Sophisticated Shadows */
+    --shadow-elegant: 0 10px 40px -10px hsl(0 0% 0% / 0.1);
+    --shadow-rose-gold: 0 8px 32px -8px hsl(340 60% 65% / 0.3);
+    --shadow-magazine: 0 20px 60px -20px hsl(0 0% 0% / 0.15);
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 94%;
+    --ring: 340 60% 65%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Custom navbar transparency styles */
+  .navbar-transparent {
+    background: transparent !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .navbar-transparent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: -1;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
