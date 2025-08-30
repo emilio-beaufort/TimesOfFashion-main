@@ -19,4 +19,19 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      // Disable native modules to prevent platform-specific issues
+      external: [],
+    },
+    // Ensure compatibility with Vercel's environment
+    target: 'esnext',
+    minify: 'esbuild',
+  },
+  optimizeDeps: {
+    // Force esbuild to handle dependencies
+    esbuildOptions: {
+      target: 'esnext',
+    },
+  },
 }));
