@@ -8,10 +8,11 @@ yarn-error.log*
 dist
 build
 
-# Environment files (keep production env)
+# Environment files
 .env.local
 .env.development.local
 .env.test.local
+.env.production.local
 
 # IDE files
 .vscode
@@ -31,5 +32,27 @@ Thumbs.db
 *.md
 !README.md
 
-# Lock files (keep only one)
+# Configuration files
+tsconfig*.json
+vite.config.ts
+tailwind.config.ts
+postcss.config.js
+eslint.config.js
+components.json
+
+# Build scripts
+build.js
+vercel-build.sh
+
+# Lock files
 bun.lockb
+package-lock.json
+
+# Vercel files
+.vercelignore
+vercel.json
+
+# Development files
+*.log
+*.tmp
+*.temp
