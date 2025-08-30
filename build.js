@@ -3,6 +3,7 @@ import { copy } from 'fs-extra';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { writeFileSync, mkdirSync } from 'fs';
+import { execSync } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,20 +15,18 @@ async function buildApp() {
     // Create dist directory
     mkdirSync('dist', { recursive: true });
     
-    // Build CSS separately first
-    console.log('Building CSS...');
-    await build({
-      entryPoints: ['src/index.css'],
-      bundle: true,
-      outfile: 'dist/styles.css',
-      format: 'esm',
-      target: 'esnext',
-      minify: true,
-      sourcemap: false,
-      loader: {
-        '.css': 'css',
-      },
-    });
+    // Build CSS using Tailwind CLI first
+    console.log('Building CSS with Tailwind...');
+    try {
+      execSync('npx tailwindcss -i ./src/index.css -o ./dist/styles.css --minify', { 
+        stdio: 'inherit',
+        cwd: __dirname 
+      });
+    } catch (error) {
+      console.log('Tailwind build failed, trying alternative approach...');
+      // Fallback: copy the CSS file directly
+      await copy('src/index.css', 'dist/styles.css');
+    }
     
     // Build the main application - only essential files
     console.log('Building JavaScript...');
