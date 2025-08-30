@@ -1,8 +1,6 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "bash vercel-build.sh",
   "outputDirectory": "dist",
   "framework": "vite",
-  "installCommand": "npm ci --prefer-offline --no-audit --no-optional",
-  "devCommand": "npm run dev",
-  "regions": ["iad1"]
+  "devCommand": "npm run dev"
 }

@@ -20,41 +20,15 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Completely bypass Rollup and use esbuild
     minify: 'esbuild',
     target: 'esnext',
     sourcemap: false,
-    chunkSizeWarningLimit: 1000,
-    // Disable Rollup entirely
-    rollupOptions: {
-      external: [],
-      output: {
-        manualChunks: undefined,
-      },
-    },
-    // Force esbuild bundling
-    lib: undefined,
-    ssr: false,
   },
   optimizeDeps: {
-    // Force esbuild to handle dependencies
-    esbuildOptions: {
-      target: 'esnext',
-      platform: 'browser',
-    },
     include: [
       'react',
       'react-dom',
       'react-router-dom',
     ],
-    exclude: ['@rollup/rollup-linux-x64-gnu'],
-  },
-  define: {
-    // Ensure proper environment variable handling
-    'process.env.NODE_ENV': JSON.stringify(mode),
-  },
-  // Disable Rollup completely
-  esbuild: {
-    target: 'esnext',
   },
 }));

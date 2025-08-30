@@ -5,11 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node build.js",
-    "build:vite": "vite build",
+    "build": "vite build",
     "build:dev": "vite build --mode development",
-    "build:vercel": "node build.js",
-    "build:clean": "rm -rf dist && node build.js",
+    "build:vercel": "vite build --mode production",
+    "build:clean": "rm -rf dist && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -75,11 +74,9 @@
     "@vitejs/plugin-react": "^4.7.0",
     "@vitejs/plugin-react-swc": "^3.11.0",
     "autoprefixer": "^10.4.21",
-    "esbuild": "^0.20.0",
     "eslint": "^9.32.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
-    "fs-extra": "^11.2.0",
     "globals": "^15.15.0",
     "lovable-tagger": "^1.1.9",
     "postcss": "^8.5.6",
@@ -88,18 +85,7 @@
     "typescript-eslint": "^8.38.0",
     "vite": "^5.4.19"
   },
-  "overrides": {
-    "rollup": {
-      "fsevents": "~2.3.3"
-    },
-    "vite": {
-      "rollup": "4.9.0"
-    }
-  },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "resolutions": {
-    "@rollup/rollup-linux-x64-gnu": "npm:@rollup/rollup-linux-x64-musl@4.9.0"
   }
 }
