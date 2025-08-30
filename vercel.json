@@ -2,7 +2,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
-  "installCommand": "npm ci --prefer-offline --no-audit",
+  "installCommand": "npm ci --prefer-offline --no-audit --no-optional",
   "devCommand": "npm run dev",
   "regions": ["iad1"]
 }
