@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import "@fontsource/unifrakturmaguntia";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,6 +31,13 @@ const Header = () => {
                 alt="Times of Fashion" 
                 className="h-12 w-auto object-contain drop-shadow-sm"
               />
+              <h1
+                className="text-2xl font-bold text-black tracking-tight"
+                style={{ fontFamily: "UnifrakturMaguntia, cursive" }}
+              >
+                The Times of Fashion
+              </h1>
+
             </Link>
           </div>
 

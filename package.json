@@ -12,6 +12,7 @@
     "clean": "rm -rf node_modules package-lock.json && npm install"
   },
   "dependencies": {
+    "@fontsource/unifrakturmaguntia": "^5.2.6",
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",
